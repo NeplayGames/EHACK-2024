@@ -26,7 +26,7 @@ namespace EHack2024.CharacterSystem.States{
         {
             Vector3 movementDirection = (CharacterComponents.transform.forward * arg2) +
             (CharacterComponents.transform.right * arg1);
-           CharacterComponents.characterController.Move(movementDirection * Time.deltaTime * 20);
+           CharacterComponents.characterController.Move(movementDirection * Time.deltaTime * speed);
         }
 
         public override void Exit()
