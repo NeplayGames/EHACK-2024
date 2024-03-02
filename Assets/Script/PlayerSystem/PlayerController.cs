@@ -43,6 +43,7 @@ public class PlayerController : IEntity, IDisposable
     }
 
     private void ShootGun(){  
+        if(!OnChangeGun)return;
         Rigidbody rigidbody = GameObject.Instantiate(projectile, characterComponents.GunPoint.position, 
         Quaternion.identity).GetComponent<Rigidbody>();    
         rigidbody.isKinematic = false;

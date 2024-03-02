@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a687f08fc61a1c45858292bfb5f4439, type: 3}
   m_Name: DataBase
   m_EditorClassIdentifier: 
-  <Player>k__BackingField: {fileID: 4365072919286369505, guid: 7edb879e503e27648bb2ee39fe732612,
+  <Player>k__BackingField: {fileID: 264611650616543844, guid: 54a847755fcb8ff4a97bec9980357c86,
     type: 3}
   <projectile>k__BackingField: {fileID: 5469005404392858883, guid: 52d7056aadfebb74f89690db95d2c452,
     type: 3}

@@ -26,7 +26,7 @@ namespace EHack2024.GameManger{
             var characterController = Instantiate(dataBase.Player).GetComponent<CharacterComponents>();
             inputHandler = new InputHandler();
             PlayerController playerController = new PlayerController(characterController ,inputHandler, dataBase.playerConfig, dataBase.projectile);
-            CameraController cameraController = new CameraController(inputHandler,characterController.transform.GetChild(1), dataBase.cameraConfig);
+            CameraController cameraController = new CameraController(inputHandler,characterController.FollowTargetTransform, dataBase.cameraConfig);
             entities.Add(playerController);
             entities.Add(inputHandler);
         }
