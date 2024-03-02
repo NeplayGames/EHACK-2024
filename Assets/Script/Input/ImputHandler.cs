@@ -1,23 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EHack2024.EntitySystem;
 using UnityEngine;
 
 namespace EHack2024.InputSystem{
-    public class ImputHandler 
+    public class InputHandler : IEntity
     {
         public event Action<float, float> changeDirection;
         public event Action changePickStatus;
         public event Action<Vector2> mousePosition;
         public event Action shoot; 
-        public void Update()
-        {
-            HandlingMovement();
-            HandleMouseMovement();
-            HandleShootAction();
-            HandlePickUpAction();
-        }
-
+    
         private void HandlePickUpAction()
         {
              if(Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.P)){
@@ -47,6 +41,14 @@ namespace EHack2024.InputSystem{
             {
                 changeDirection?.Invoke(horizontal, vertical);
             }
+        }
+
+        public void UpdateEntity()
+        {
+             HandlingMovement();
+            HandleMouseMovement();
+            HandleShootAction();
+            HandlePickUpAction();
         }
     }
 }
