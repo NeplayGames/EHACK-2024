@@ -12,7 +12,7 @@ namespace EHack2024.CharacterSystem.States{
             this.characterController = characterController;
         }
 
-        public abstract  void Enter();
+        public abstract void Enter();
 
         public abstract void Exit();
 
