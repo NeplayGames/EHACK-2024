@@ -4,17 +4,21 @@ using EHack2024.StateMachineSystem;
 using UnityEngine;
 
 namespace EHack2024.CharacterSystem.States{
-    public class CharacterWalkState : IState
+    public class CharacterWalkState : CharacterBaseState
     {
-        public void Enter()
+       public CharacterWalkState(CharacterController characterController) : base(characterController)
         {
         }
 
-        public void Exit()
+        public override void Enter()
         {
         }
 
-        public void Update()
+        public override void Exit()
+        {
+        }
+
+        public override void Update()
         {
         }
     }
