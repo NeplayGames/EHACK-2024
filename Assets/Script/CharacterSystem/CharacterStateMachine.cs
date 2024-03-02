@@ -6,5 +6,11 @@ using UnityEngine;
 namespace EHack2024.CharacterSystem{
     public class CharacterStateMachine : StateMachine
     {
+        public CharacterStateMachine()
+        {
+        }
+
+        private void CreateStates(){
+        }
     }
 }
