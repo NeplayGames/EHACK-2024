@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EHack2024.StateMachine{
+namespace EHack2024.StateMachineSystem{
     public abstract class StateMachine 
     {
         public IState CurrentState { get; set; }
