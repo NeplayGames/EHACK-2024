@@ -16,15 +16,17 @@ public class PlayerController : IEntity, IDisposable
     public PlayerController(CharacterController characterController, InputHandler inputHandler)
     {
         this.CharacterController = characterController;
-        characterStateMachine = new CharacterStateMachine(characterController);
         this.inputHandler = inputHandler;
-        inputHandler.changeDirection += OnChageDirection;
+        characterStateMachine = new CharacterStateMachine(characterController, inputHandler);
+        inputHandler.walkOrRun += OnWalkOrRun;
     }
 
-    private void OnChageDirection(float arg1, float arg2)
+    private void OnWalkOrRun(bool obj)
     {
-        CharacterController.Move(new Vector3(arg1, 0, arg2));
+        characterStateMachine.ChangeState(characterStateMachine.CharacterWalkState);
     }
+
+    
 
     // Update is called once per frame
 
@@ -35,6 +37,6 @@ public class PlayerController : IEntity, IDisposable
 
     public void Dispose()
     {
-        inputHandler.changeDirection -= OnChageDirection;
+        inputHandler.walkOrRun -= OnWalkOrRun;
     }
 }
