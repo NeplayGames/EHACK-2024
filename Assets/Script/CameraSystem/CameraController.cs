@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using EHack2024.DataSystem.Configs;
 using EHack2024.InputSystem;
 using UnityEngine;
 namespace EHack2024.CameraSystem{
@@ -11,9 +9,11 @@ namespace EHack2024.CameraSystem{
         private float targetPitch;
         private InputHandler inputHandler;
         private Transform CameraPosition; 
-        public CameraController(InputHandler inputHandler,Transform cameraPostion, Transform playerPosition){
+        private CameraConfig cameraConfig {get;}
+        public CameraController(InputHandler inputHandler,Transform cameraPostion, CameraConfig cameraConfig){
             this.inputHandler = inputHandler;
             CameraPosition = cameraPostion;
+            this.cameraConfig = cameraConfig;
             this.inputHandler.mousePosition += CameraFreeRotation;
         }
 
@@ -24,10 +24,10 @@ namespace EHack2024.CameraSystem{
             {
                 
                 var look = mousePosition;
-                if (mousePosition.x < 0.3f && mousePosition.x > - 0.3f)
+                if (mousePosition.x < cameraConfig.cameraDelta && mousePosition.x > - cameraConfig.cameraDelta)
                     look = new Vector2(0, mousePosition.y);
 
-                if (mousePosition.y < 0.3f && mousePosition.y > - 0.3f)
+                if (mousePosition.y < cameraConfig.cameraDelta && mousePosition.y > - cameraConfig.cameraDelta)
                     look = new Vector2(mousePosition.x, 0);
 
                 var eulerAngles = CameraPosition.eulerAngles;
@@ -35,7 +35,7 @@ namespace EHack2024.CameraSystem{
                 targetPitch = AdjustPitchToCurrentView();
 
                 targetYaw += look.x ;
-                targetPitch += look.y;
+                targetPitch -= look.y;
 
                 // clamp our rotations so our values are limited 360 degrees
                 targetYaw = ClampAngle(targetYaw, -360, 360);
