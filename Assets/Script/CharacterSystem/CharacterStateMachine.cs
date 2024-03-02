@@ -12,16 +12,16 @@ namespace EHack2024.CharacterSystem{
         public CharacterWalkState CharacterWalkState {get; private set;}
         public CharacterShootState CharacterShootState {get; private set;}
          public CharacterIdleState CharacterIdleState {get; private set;}
-        public CharacterStateMachine(CharacterController characterController, InputHandler inputHandler)
+        public CharacterStateMachine(CharacterComponents characterComponents, InputHandler inputHandler)
         {
-            CreateStates(characterController, inputHandler);
+            CreateStates(characterComponents, inputHandler);
         }
 
-        private void CreateStates(CharacterController characterController, InputHandler inputHandler){
-            CharacterRunState = new CharacterRunState(characterController);
-            CharacterShootState = new CharacterShootState(characterController);
-            CharacterWalkState = new CharacterWalkState(characterController, inputHandler);
-            CharacterIdleState = new CharacterIdleState(characterController);
+        private void CreateStates(CharacterComponents characterComponent, InputHandler inputHandler){
+            CharacterRunState = new CharacterRunState(characterComponent);
+            CharacterShootState = new CharacterShootState(characterComponent);
+            CharacterWalkState = new CharacterWalkState(characterComponent, inputHandler);
+            CharacterIdleState = new CharacterIdleState(characterComponent);
             ChangeState(CharacterIdleState);
         }
     }

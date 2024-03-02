@@ -6,10 +6,10 @@ using UnityEngine;
 namespace EHack2024.CharacterSystem.States{
     public abstract class CharacterBaseState : IState
     {
-        protected CharacterController characterController {get;}
-        public CharacterBaseState(CharacterController characterController)
+        protected CharacterComponents CharacterComponents {get;}
+        public CharacterBaseState(CharacterComponents characterComponents)
         {
-            this.characterController = characterController;
+            this.CharacterComponents = characterComponents;
         }
 
         public abstract void Enter();

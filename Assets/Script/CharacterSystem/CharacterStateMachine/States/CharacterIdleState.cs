@@ -6,7 +6,8 @@ using UnityEngine;
 namespace EHack2024.CharacterSystem.States{
     public class CharacterIdleState: CharacterBaseState
     {
-       public CharacterIdleState(CharacterController characterController) : base(characterController)
+       
+        public CharacterIdleState(CharacterComponents characterComponents) : base(characterComponents)
         {
         }
 

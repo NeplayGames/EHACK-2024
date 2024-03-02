@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using EHack2024.CameraSystem;
+using EHack2024.CharacterSystem;
 using EHack2024.DataSystem;
 using EHack2024.EntitySystem;
 using EHack2024.InputSystem;
@@ -22,7 +23,7 @@ namespace EHack2024.GameManger{
 
         private void Initialize()
         {
-            CharacterController characterController = Instantiate(dataBase.Player).GetComponent<CharacterController>();
+            var characterController = Instantiate(dataBase.Player).GetComponent<CharacterComponents>();
             inputHandler = new InputHandler();
             PlayerController playerController = new PlayerController(characterController ,inputHandler);
             CameraController cameraController = new CameraController(inputHandler,characterController.transform.GetChild(1), characterController.transform);

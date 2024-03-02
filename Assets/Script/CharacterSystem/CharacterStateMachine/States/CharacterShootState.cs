@@ -6,7 +6,7 @@ using UnityEngine;
 namespace EHack2024.CharacterSystem.States{
     public class CharacterShootState : CharacterBaseState
     {
-        public CharacterShootState(CharacterController characterController) : base(characterController)
+        public CharacterShootState(CharacterComponents characterComponents) : base(characterComponents)
         {
         }
 

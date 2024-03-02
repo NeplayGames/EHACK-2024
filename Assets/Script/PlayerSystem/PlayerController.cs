@@ -10,14 +10,12 @@ using UnityEngine.Assertions;
 public class PlayerController : IEntity, IDisposable
 {
     // Start is called before the first frame update
-    private CharacterController CharacterController;
     private CharacterStateMachine characterStateMachine;
     private InputHandler inputHandler;
-    public PlayerController(CharacterController characterController, InputHandler inputHandler)
+    public PlayerController(CharacterComponents characterComponents, InputHandler inputHandler)
     {
-        this.CharacterController = characterController;
         this.inputHandler = inputHandler;
-        characterStateMachine = new CharacterStateMachine(characterController, inputHandler);
+        characterStateMachine = new CharacterStateMachine(characterComponents, inputHandler);
         inputHandler.walkOrRun += OnWalkOrRun;
     }
 

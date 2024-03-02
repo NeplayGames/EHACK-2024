@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace EHack2024.CharacterSystem.States{
     public class CharacterRunState : CharacterBaseState
-    {
-       public CharacterRunState(CharacterController characterController) : base(characterController)
+    {   
+        public CharacterRunState(CharacterComponents characterComponents) : base(characterComponents)
         {
         }
 
@@ -20,6 +20,8 @@ namespace EHack2024.CharacterSystem.States{
 
         public override void Update()
         {
+            
+
         }
     }
 
