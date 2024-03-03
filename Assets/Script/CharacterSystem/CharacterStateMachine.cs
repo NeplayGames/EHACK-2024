@@ -25,10 +25,10 @@ namespace EHack2024.CharacterSystem{
             CharacterShootState = new CharacterShootState(characterComponent, projectile, poolFabric, this);
             CharacterWalkState = new CharacterWalkState(characterComponent, inputHandler, playerConfig);
             CharacterIdleState = new CharacterIdleState(characterComponent);
-            ChangeState(CharacterIdleState);
         }
         public override void ChangeState(IState newState)
         {
+            Debug.Log(newState);
             if(CanChangeState)
                 base.ChangeState(newState);
         }

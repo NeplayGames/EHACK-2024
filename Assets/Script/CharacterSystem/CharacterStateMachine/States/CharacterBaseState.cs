@@ -14,8 +14,19 @@ namespace EHack2024.CharacterSystem.States{
         }
 
         protected void PlayAnimation(int hash){
+            ResetAllTriggers(this.CharacterComponents.animator);
             this.CharacterComponents.animator.SetTrigger(hash);
         }
+        private void ResetAllTriggers(Animator animator)
+        {
+            foreach (var param in animator.parameters)
+            {
+            if (param.type == AnimatorControllerParameterType.Trigger)
+            {
+                animator.ResetTrigger(param.name);
+            }
+        }
+}
         public abstract void Enter();
 
         public abstract void Exit();

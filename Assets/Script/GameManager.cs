@@ -15,6 +15,7 @@ namespace EHack2024.GameManger{
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private DataBase dataBase;
+        [SerializeField] private EnemyController enemyController;
         [SerializeField] private UIView uIView;
         private List<IEntity> entities = new List<IEntity>();
         private InputHandler inputHandler;
@@ -31,7 +32,7 @@ namespace EHack2024.GameManger{
         private void Initialize()
         {
             playerHealth = new();
-            uIView.Initial(playerHealth);
+            uIView.Initial(playerHealth, enemyController);
             poolFabric = new PoolFabric();
             characterComponents = Instantiate(dataBase.Player).GetComponent<CharacterComponents>();
             inputHandler = new InputHandler();
@@ -48,6 +49,7 @@ namespace EHack2024.GameManger{
         {
             gameOver =true;
             Destroy(characterComponents.gameObject);
+            uIView.GameOver();
         }
 
         void Update(){

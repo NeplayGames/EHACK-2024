@@ -26,6 +26,7 @@ public class PlayerController : IEntity, IDisposable
         inputHandler.shoot += ChangeToShootState;
         this.playerHealth = playerHealth;
         characterComponents.GotHit+= GotHit;
+
     }
 
     private void GotHit()
@@ -56,6 +57,6 @@ public class PlayerController : IEntity, IDisposable
     public void Dispose()
     {
         inputHandler.walkOrRun -= OnWalkOrRun;
-  characterComponents.GotHit-= GotHit;
+
     }
 }

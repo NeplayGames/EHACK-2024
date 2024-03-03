@@ -26,7 +26,7 @@ namespace EHack2024.CharacterSystem{
 
         public void OnCollisionEnter(Collision collision){
             if(collision.transform.CompareTag("Meteroid")){
-                animator.SetTrigger("Hit");
+               // animator.SetTrigger("Hit");
                 GotHit?.Invoke();
             }
         }

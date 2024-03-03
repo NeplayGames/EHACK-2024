@@ -14,7 +14,6 @@ namespace EHack2024.CharacterSystem.States{
         public override void Enter()
         {
             PlayAnimation(CharacterComponents.CharacterAnimationConfig.IdleHash);
-   
         }
 
         public override void Exit()

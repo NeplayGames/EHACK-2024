@@ -36,7 +36,7 @@ namespace EHack2024.CharacterSystem.States{
             Rigidbody rigidbody = meteroid.GetComponent<Rigidbody>();    
             rigidbody.isKinematic = false;
             Vector3 direction =  CharacterComponents.GunPoint.forward; 
-            rigidbody.AddForce (direction * 3000); 
+            rigidbody.AddForce (direction * 9000); 
     }
         public override void Exit()
         {

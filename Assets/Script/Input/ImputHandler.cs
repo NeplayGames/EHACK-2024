@@ -15,17 +15,18 @@ namespace EHack2024.InputSystem{
         private bool IsMoving {
             set{
                 if(value != isMoving){
-                    walkOrRun?.Invoke(value);
                     isMoving = value;
+                    walkOrRun?.Invoke(isMoving);
                 }
+            }
+            get{
+               return isMoving;
             }
         }
         public event Action<bool> walkOrRun;
-        private Vector2 mousePo;
 
         public InputHandler()
         {
-            mousePo = Input.mousePosition;
         }
 
         private void HandlePickUpAction()
@@ -47,7 +48,6 @@ namespace EHack2024.InputSystem{
             Vector2 currentPos = new Vector2(Input.GetAxis("Mouse X") ,Input.GetAxis("Mouse Y"));
            // if(currentPos != mousePo){
                 mousePosition?.Invoke(currentPos);
-                mousePo = currentPos;
             //}
         }
 
@@ -56,9 +56,9 @@ namespace EHack2024.InputSystem{
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
             IsMoving = horizontal != 0 || vertical != 0;
-            if (isMoving)
+            if (IsMoving)
             {
-                changeDirection?.Invoke(horizontal, Mathf.Abs(vertical));
+                changeDirection?.Invoke(horizontal, vertical);
             }
         }
 
