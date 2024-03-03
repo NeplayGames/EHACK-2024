@@ -27,13 +27,14 @@ namespace EHack2024.MeteriodSystem{
             if(tempTime > time){
                 tempTime = 0;
                 Vector3 position;
-                if(Random.Range(0,1f)< 5f)
+                if(Random.Range(0,1f)< .5f)
                     position = new Vector3(Random.Range(-orbsConfig.RangeX, orbsConfig.RangeX), height ,Random.Range(-orbsConfig.RangeY, orbsConfig.RangeY));
                 else
                     position = new Vector3( player.position.x, height, player.position.z);
                 var meteroid = pool.Request();
                 meteroid.transform.position = position;
                 meteroid.transform.rotation = Quaternion.identity;
+                meteroid.pool = pool;
             }
         }
     }

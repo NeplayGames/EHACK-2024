@@ -15,16 +15,24 @@ public class PlayerController : IEntity, IDisposable
     private CharacterStateMachine characterStateMachine;
     private InputHandler inputHandler;
     private CharacterComponents characterComponents;
-    public PlayerController(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, Meteroid projectile, PoolFabric poolFabric)
+    private PlayerHealth playerHealth;
+    public PlayerController(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, Meteroid projectile,
+     PoolFabric poolFabric, PlayerHealth playerHealth)
     {
         this.inputHandler = inputHandler;
         characterStateMachine = new CharacterStateMachine(characterComponents, inputHandler, playerConfig, projectile, poolFabric);
         this.characterComponents = characterComponents;
         inputHandler.walkOrRun += OnWalkOrRun;
         inputHandler.shoot += ChangeToShootState;
+        this.playerHealth = playerHealth;
+        characterComponents.GotHit+= GotHit;
     }
 
-  
+    private void GotHit()
+    {
+        playerHealth.RemoveHealth(1);
+    }
+
     private void ChangeToShootState()
     {
         characterStateMachine.ChangeState(characterStateMachine.CharacterShootState);
@@ -48,6 +56,6 @@ public class PlayerController : IEntity, IDisposable
     public void Dispose()
     {
         inputHandler.walkOrRun -= OnWalkOrRun;
-
+  characterComponents.GotHit-= GotHit;
     }
 }

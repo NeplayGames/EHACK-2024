@@ -8,14 +8,19 @@ using UnityEngine;
 namespace EHack2024.CharacterSystem.States{
     public class CharacterShootState : CharacterBaseState
     {
-        private IPool<Meteroid> projectile;
-        public CharacterShootState(CharacterComponents characterComponents, Meteroid projectile, PoolFabric poolFabric) : base(characterComponents)
+        private IPool<Meteroid> pool;
+        private float time = .7f;
+        private float tempTime = 0;
+        private CharacterStateMachine characterStateMachine;
+        public CharacterShootState(CharacterComponents characterComponents, Meteroid projectile, PoolFabric poolFabric, CharacterStateMachine characterStateMachine) : base(characterComponents)
         {
-            this.projectile = poolFabric.CreatePool(projectile);
+            this.pool = poolFabric.CreatePool(projectile);
+            this.characterStateMachine = characterStateMachine;
         }
 
         public override void Enter()
         {
+            tempTime = 0;
              PlayAnimation(CharacterComponents.CharacterAnimationConfig.ShootHash);
         }
 
@@ -24,12 +29,13 @@ namespace EHack2024.CharacterSystem.States{
             ShootGun();
         }
         private void ShootGun(){  
-            Meteroid meteroid = projectile.Request();
+            Meteroid meteroid = pool.Request();
             meteroid.transform.position =  CharacterComponents.GunPoint.position;
             meteroid.transform.rotation = Quaternion.identity;
+             meteroid.pool = pool;
             Rigidbody rigidbody = meteroid.GetComponent<Rigidbody>();    
             rigidbody.isKinematic = false;
-            Vector3 direction =  CharacterComponents.GunPoint.up; 
+            Vector3 direction =  CharacterComponents.GunPoint.forward; 
             rigidbody.AddForce (direction * 3000); 
     }
         public override void Exit()
@@ -39,6 +45,17 @@ namespace EHack2024.CharacterSystem.States{
 
         public override void Update()
         {
+            tempTime += UnityEngine.Time.deltaTime;
+            if(tempTime > time){
+            ShootGun();
+            characterStateMachine.CanChangeState = true;
+            if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical")!=0)
+            characterStateMachine.ChangeState(characterStateMachine.CharacterRunState);      
+            else
+             characterStateMachine.ChangeState(characterStateMachine.CharacterIdleState);      
+           
+            }
+               
         }
     }
 }

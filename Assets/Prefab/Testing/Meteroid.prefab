@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3239040436155311477}
   m_Layer: 0
   m_Name: Meteroid
-  m_TagString: Untagged
+  m_TagString: Meteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,4 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5972791301e8d94d9e12c82991b09e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deactiveTime: 20
+  deactiveTime: 10
+  tagName: 
+  rigidbodys: {fileID: -6081440495622669133}

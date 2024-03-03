@@ -13,6 +13,7 @@ namespace EHack2024.CharacterSystem{
         [SerializeField] private Transform BackPosition;
         [SerializeField] public Transform GunPoint;
         [SerializeField] public Animator animator;
+        public event Action GotHit;
         private CharacterAnimationConfig characterAnimationConfig;
         public CharacterAnimationConfig CharacterAnimationConfig{
             get{
@@ -22,5 +23,13 @@ namespace EHack2024.CharacterSystem{
                 return characterAnimationConfig;
             }
         }
+
+        public void OnCollisionEnter(Collision collision){
+            if(collision.transform.CompareTag("Meteroid")){
+                GotHit?.Invoke();
+            }
+        }
+
+
     }
 }

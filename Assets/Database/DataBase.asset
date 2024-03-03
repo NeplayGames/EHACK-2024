@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Player>k__BackingField: {fileID: 264611650616543844, guid: 54a847755fcb8ff4a97bec9980357c86,
     type: 3}
-  <projectile>k__BackingField: {fileID: 5469005404392858883, guid: 52d7056aadfebb74f89690db95d2c452,
+  <projectile>k__BackingField: {fileID: -6337718786283268774, guid: 52d7056aadfebb74f89690db95d2c452,
     type: 3}
-  <meteroid>k__BackingField: {fileID: 5469005404392858883, guid: 52d7056aadfebb74f89690db95d2c452,
+  <meteroid>k__BackingField: {fileID: 3239040436155311477, guid: 8042622fce27a9d4c9552189114ecd90,
     type: 3}
   <playerConfig>k__BackingField: {fileID: 11400000, guid: 16f76ed1fee88ae41820dc5ab586e6f8,
     type: 2}

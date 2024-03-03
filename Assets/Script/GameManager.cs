@@ -18,6 +18,9 @@ namespace EHack2024.GameManger{
         private List<IEntity> entities = new List<IEntity>();
         private InputHandler inputHandler;
         private PoolFabric poolFabric;
+        private CharacterComponents characterComponents;
+        private PlayerHealth playerHealth;
+        private bool gameOver = false;
         void Start(){
             UnityEngine.Cursor.visible = false;
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -26,18 +29,27 @@ namespace EHack2024.GameManger{
 
         private void Initialize()
         {
+            playerHealth = new();
             poolFabric = new PoolFabric();
-            var characterController = Instantiate(dataBase.Player).GetComponent<CharacterComponents>();
+            characterComponents = Instantiate(dataBase.Player).GetComponent<CharacterComponents>();
             inputHandler = new InputHandler();
-            PlayerController playerController = new PlayerController(characterController ,inputHandler, dataBase.playerConfig, dataBase.projectile, poolFabric);
-            CameraController cameraController = new CameraController(inputHandler,characterController.FollowTargetTransform, dataBase.cameraConfig);
-            MeteriodController meteriodController = new MeteriodController(dataBase.orbsConfig, dataBase.meteroid, characterController.transform, poolFabric);
+            PlayerController playerController = new PlayerController(characterComponents ,inputHandler, dataBase.playerConfig, dataBase.projectile, poolFabric, playerHealth);
+            CameraController cameraController = new CameraController(inputHandler,characterComponents.FollowTargetTransform, dataBase.cameraConfig);
+            MeteriodController meteriodController = new MeteriodController(dataBase.orbsConfig, dataBase.meteroid, characterComponents.transform, poolFabric);
             entities.Add(playerController);
             entities.Add(inputHandler);
             entities.Add(meteriodController);
+            playerHealth.Died += GameOver;
+        }
+
+        private void GameOver()
+        {
+            gameOver =true;
+            Destroy(characterComponents.gameObject);
         }
 
         void Update(){
+            if(gameOver) return;
             foreach(var entity in entities){
                 entity?.UpdateEntity();
             }

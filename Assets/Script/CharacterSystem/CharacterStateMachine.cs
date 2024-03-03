@@ -22,7 +22,7 @@ namespace EHack2024.CharacterSystem{
 
         private void CreateStates(CharacterComponents characterComponent, InputHandler inputHandler, PlayerConfig playerConfig, Meteroid projectile, PoolFabric poolFabric){
             CharacterRunState = new CharacterRunState(characterComponent, inputHandler, playerConfig);
-            CharacterShootState = new CharacterShootState(characterComponent, projectile, poolFabric);
+            CharacterShootState = new CharacterShootState(characterComponent, projectile, poolFabric, this);
             CharacterWalkState = new CharacterWalkState(characterComponent, inputHandler, playerConfig);
             CharacterIdleState = new CharacterIdleState(characterComponent);
             ChangeState(CharacterIdleState);
