@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EHack2024.Pool;
 using EHack2024.StateMachineSystem;
 using UnityEngine;
 
 namespace EHack2024.CharacterSystem.States{
     public class CharacterShootState : CharacterBaseState
     {
-        private GameObject projectile;
-        public CharacterShootState(CharacterComponents characterComponents, GameObject projectile) : base(characterComponents)
+        private IPool<Meteroid> projectile;
+        public CharacterShootState(CharacterComponents characterComponents, Meteroid projectile, PoolFabric poolFabric) : base(characterComponents)
         {
-            this.projectile = projectile;
+            this.projectile = poolFabric.CreatePool(projectile);
         }
 
         public override void Enter()
@@ -23,8 +24,10 @@ namespace EHack2024.CharacterSystem.States{
             ShootGun();
         }
         private void ShootGun(){  
-            Rigidbody rigidbody = GameObject.Instantiate(projectile, CharacterComponents.GunPoint.position, 
-            Quaternion.identity).GetComponent<Rigidbody>();    
+            Meteroid meteroid = projectile.Request();
+            meteroid.transform.position =  CharacterComponents.GunPoint.position;
+            meteroid.transform.rotation = Quaternion.identity;
+            Rigidbody rigidbody = meteroid.GetComponent<Rigidbody>();    
             rigidbody.isKinematic = false;
             Vector3 direction =  CharacterComponents.GunPoint.up; 
             rigidbody.AddForce (direction * 3000); 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EHack2024.CharacterSystem.States;
 using EHack2024.DataSystem.Configs;
 using EHack2024.InputSystem;
+using EHack2024.Pool;
 using EHack2024.StateMachineSystem;
 using UnityEngine;
 
@@ -14,14 +15,14 @@ namespace EHack2024.CharacterSystem{
         public CharacterWalkState CharacterWalkState {get; private set;}
         public CharacterShootState CharacterShootState {get; private set;}
          public CharacterIdleState CharacterIdleState {get; private set;}
-        public CharacterStateMachine(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, GameObject projectile)
+        public CharacterStateMachine(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, Meteroid projectile, PoolFabric poolFabric)
         {
-            CreateStates(characterComponents, inputHandler, playerConfig, projectile);
+            CreateStates(characterComponents, inputHandler, playerConfig, projectile, poolFabric);
         }
 
-        private void CreateStates(CharacterComponents characterComponent, InputHandler inputHandler, PlayerConfig playerConfig, GameObject projectile){
+        private void CreateStates(CharacterComponents characterComponent, InputHandler inputHandler, PlayerConfig playerConfig, Meteroid projectile, PoolFabric poolFabric){
             CharacterRunState = new CharacterRunState(characterComponent, inputHandler, playerConfig);
-            CharacterShootState = new CharacterShootState(characterComponent, projectile);
+            CharacterShootState = new CharacterShootState(characterComponent, projectile, poolFabric);
             CharacterWalkState = new CharacterWalkState(characterComponent, inputHandler, playerConfig);
             CharacterIdleState = new CharacterIdleState(characterComponent);
             ChangeState(CharacterIdleState);

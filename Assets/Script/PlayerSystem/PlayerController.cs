@@ -5,6 +5,7 @@ using EHack2024.CharacterSystem;
 using EHack2024.DataSystem.Configs;
 using EHack2024.EntitySystem;
 using EHack2024.InputSystem;
+using EHack2024.Pool;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -14,10 +15,10 @@ public class PlayerController : IEntity, IDisposable
     private CharacterStateMachine characterStateMachine;
     private InputHandler inputHandler;
     private CharacterComponents characterComponents;
-    public PlayerController(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, GameObject projectile)
+    public PlayerController(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, Meteroid projectile, PoolFabric poolFabric)
     {
         this.inputHandler = inputHandler;
-        characterStateMachine = new CharacterStateMachine(characterComponents, inputHandler, playerConfig, projectile);
+        characterStateMachine = new CharacterStateMachine(characterComponents, inputHandler, playerConfig, projectile, poolFabric);
         this.characterComponents = characterComponents;
         inputHandler.walkOrRun += OnWalkOrRun;
         inputHandler.shoot += ChangeToShootState;

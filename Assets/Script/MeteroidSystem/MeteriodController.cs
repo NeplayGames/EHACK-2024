@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EHack2024.DataSystem.Configs;
 using EHack2024.EntitySystem;
+using EHack2024.Pool;
 using UnityEngine;
 
 namespace EHack2024.MeteriodSystem{
@@ -10,14 +11,14 @@ namespace EHack2024.MeteriodSystem{
         private OrbsConfig orbsConfig;
         private float time = .3f;
         private float tempTime = 0;
-        private GameObject meteroid;
         private Transform player;
         private const float height = 100;
-        public MeteriodController(OrbsConfig orbsConfig, GameObject meteroid, Transform player)
+        private IPool<Meteroid> pool;
+        public MeteriodController(OrbsConfig orbsConfig, Meteroid meteroid, Transform player, PoolFabric poolFabric)
         {
             this.orbsConfig = orbsConfig;
-            this.meteroid = meteroid;
             this.player = player;
+            pool = poolFabric.CreatePool(meteroid);
         }
 
         public void UpdateEntity()
@@ -30,7 +31,9 @@ namespace EHack2024.MeteriodSystem{
                     position = new Vector3(Random.Range(-orbsConfig.RangeX, orbsConfig.RangeX), height ,Random.Range(-orbsConfig.RangeY, orbsConfig.RangeY));
                 else
                     position = new Vector3( player.position.x, height, player.position.z);
-                GameObject.Instantiate(meteroid,position, Quaternion.identity);
+                var meteroid = pool.Request();
+                meteroid.transform.position = position;
+                meteroid.transform.rotation = Quaternion.identity;
             }
         }
     }
