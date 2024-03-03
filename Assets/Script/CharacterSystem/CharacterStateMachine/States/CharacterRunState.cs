@@ -12,6 +12,13 @@ namespace EHack2024.CharacterSystem.States{
         {
             speed = playerConfig.playerRunSpeed;
         }
+
+        public override void Enter()
+        {
+            PlayAnimation(CharacterComponents.CharacterAnimationConfig.RunHash);
+   
+            base.Enter();
+        }
     }
 
 }

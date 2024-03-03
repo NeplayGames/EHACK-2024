@@ -15,6 +15,11 @@ namespace EHack2024.CharacterSystem.States{
             speed = playerConfig.playerWalkSpeed;
         }
 
-       
+        public override void Enter()
+        {
+            PlayAnimation(CharacterComponents.CharacterAnimationConfig.WalkHash);
+            base.Enter();
+        }
+
     }
 }

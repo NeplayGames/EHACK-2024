@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EHack2024.AnimationSystem;
 using EHack2024.StateMachineSystem;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ namespace EHack2024.CharacterSystem.States{
             this.CharacterComponents = characterComponents;
         }
 
+        protected void PlayAnimation(int hash){
+            this.CharacterComponents.animator.SetTrigger(hash);
+        }
         public abstract void Enter();
 
         public abstract void Exit();

@@ -14,42 +14,28 @@ public class PlayerController : IEntity, IDisposable
     private CharacterStateMachine characterStateMachine;
     private InputHandler inputHandler;
     private CharacterComponents characterComponents;
-    private GameObject projectile;
-    private bool OnChangeGun = false;
     public PlayerController(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, GameObject projectile)
     {
         this.inputHandler = inputHandler;
-        characterStateMachine = new CharacterStateMachine(characterComponents, inputHandler, playerConfig);
+        characterStateMachine = new CharacterStateMachine(characterComponents, inputHandler, playerConfig, projectile);
         this.characterComponents = characterComponents;
-        this.projectile = projectile;
         inputHandler.walkOrRun += OnWalkOrRun;
-        inputHandler.changePickStatus += ChangeGun;
-        inputHandler.shoot += ShootGun;
+        inputHandler.shoot += ChangeToShootState;
     }
 
-
-    private void ChangeGun()
+  
+    private void ChangeToShootState()
     {
-        OnChangeGun = !OnChangeGun;
-        characterComponents.ChangeGunStatus(OnChangeGun);
-        characterStateMachine.ChangeState(OnChangeGun 
-        ? characterStateMachine.CharacterWalkState : characterStateMachine.CharacterRunState);
+        characterStateMachine.ChangeState(characterStateMachine.CharacterShootState);
+        characterStateMachine.CanChangeState = false;
     }
 
     private void OnWalkOrRun(bool obj)
     {    
-        characterStateMachine.ChangeState(!obj? characterStateMachine.CharacterIdleState :OnChangeGun 
-        ? characterStateMachine.CharacterWalkState : characterStateMachine.CharacterRunState);
+        characterStateMachine.ChangeState(!obj? characterStateMachine.CharacterIdleState : characterStateMachine.CharacterRunState);
     }
 
-    private void ShootGun(){  
-        if(!OnChangeGun)return;
-        Rigidbody rigidbody = GameObject.Instantiate(projectile, characterComponents.GunPoint.position, 
-        Quaternion.identity).GetComponent<Rigidbody>();    
-        rigidbody.isKinematic = false;
-        Vector3 direction =  characterComponents.GunPoint.up; 
-        rigidbody.AddForce (direction * 3000); 
-    }
+  
 
      
     // Update is called once per frame
@@ -61,5 +47,6 @@ public class PlayerController : IEntity, IDisposable
     public void Dispose()
     {
         inputHandler.walkOrRun -= OnWalkOrRun;
+
     }
 }

@@ -9,21 +9,27 @@ using UnityEngine;
 namespace EHack2024.CharacterSystem{
     public class CharacterStateMachine : StateMachine
     {
+        public bool CanChangeState = true;
         public CharacterRunState CharacterRunState {get; private set;}
         public CharacterWalkState CharacterWalkState {get; private set;}
         public CharacterShootState CharacterShootState {get; private set;}
          public CharacterIdleState CharacterIdleState {get; private set;}
-        public CharacterStateMachine(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig)
+        public CharacterStateMachine(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, GameObject projectile)
         {
-            CreateStates(characterComponents, inputHandler, playerConfig);
+            CreateStates(characterComponents, inputHandler, playerConfig, projectile);
         }
 
-        private void CreateStates(CharacterComponents characterComponent, InputHandler inputHandler, PlayerConfig playerConfig){
+        private void CreateStates(CharacterComponents characterComponent, InputHandler inputHandler, PlayerConfig playerConfig, GameObject projectile){
             CharacterRunState = new CharacterRunState(characterComponent, inputHandler, playerConfig);
-            CharacterShootState = new CharacterShootState(characterComponent);
+            CharacterShootState = new CharacterShootState(characterComponent, projectile);
             CharacterWalkState = new CharacterWalkState(characterComponent, inputHandler, playerConfig);
             CharacterIdleState = new CharacterIdleState(characterComponent);
             ChangeState(CharacterIdleState);
+        }
+        public override void ChangeState(IState newState)
+        {
+            if(CanChangeState)
+                base.ChangeState(newState);
         }
     }
 }
