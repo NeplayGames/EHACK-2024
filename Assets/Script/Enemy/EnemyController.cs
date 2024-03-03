@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Animator animator;
+    [SerializeField] private Rigidbody rigidbodys;
     [SerializeField] private float time = 3f;
     private float lastTime;
     private bool onPath = false;
@@ -31,14 +32,11 @@ public class EnemyController : MonoBehaviour
     {
         for (int i = 0; i < 30; i++)
         {
-            Vector3 randomPoint =  UnityEngine.Random.insideUnitSphere * range;
+            Vector3 randomPoint =  UnityEngine.Random.insideUnitSphere * range + transform.position;
             NavMeshHit hit;
-
             if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
             {
                 result = hit.position;
-            Debug.Log("Destination" + result);
-
                 return true;
             }
         }
@@ -50,15 +48,18 @@ public class EnemyController : MonoBehaviour
 	{
         NavMeshAgent agent = navMeshAgent;
         float dist=agent.remainingDistance;
-		if (dist!=Mathf.Infinity && agent.pathStatus==NavMeshPathStatus.PathComplete && agent.remainingDistance==0)
+		if (dist!=Mathf.Infinity && agent.pathStatus==NavMeshPathStatus.PathComplete && agent.remainingDistance<= 0){
             return true;
+        }
 		return false;
 	}
    void OnCollisionEnter(Collision collision){
         if(collision.transform.CompareTag("Bullet")){
+            if(onPath)return;
             hit?.Invoke();
-              animator.Play("Appear", -1, 0f);
+            animator.Play("Appear", -1, 0f);
             SetDestination();
+            rigidbodys.isKinematic = true;
             onPath = true;
         }
    }
@@ -68,6 +69,7 @@ public class EnemyController : MonoBehaviour
     if(onPath){
         if(pathComplete()){
             onPath = false;
+            rigidbodys.isKinematic = false;
             lastTime = Time.timeSinceLevelLoad;
             animator.Play("Disapear", -1, 0f);
         }

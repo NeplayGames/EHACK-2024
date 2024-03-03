@@ -30,7 +30,7 @@ public class UIView : MonoBehaviour
 
     private void ChangeHealthUI(int arg1, int arg2)
     {
-        health.text = $"Health = {arg1} / {arg2}";
+        health.text = $"Health {arg1} / {arg2}";
     }
 
     // Update is called once per frame

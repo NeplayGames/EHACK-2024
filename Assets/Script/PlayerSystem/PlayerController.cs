@@ -16,7 +16,7 @@ public class PlayerController : IEntity, IDisposable
     private InputHandler inputHandler;
     private CharacterComponents characterComponents;
     private PlayerHealth playerHealth;
-    public PlayerController(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, Meteroid projectile,
+    public PlayerController(CharacterComponents characterComponents, InputHandler inputHandler, PlayerConfig playerConfig, PoolObject projectile,
      PoolFabric poolFabric, PlayerHealth playerHealth)
     {
         this.inputHandler = inputHandler;

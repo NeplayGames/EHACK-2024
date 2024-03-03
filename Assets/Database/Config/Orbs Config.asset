@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e407324bb18f41945bfed08f2ce0352f, type: 3}
   m_Name: Orbs Config
   m_EditorClassIdentifier: 
-  <RangeX>k__BackingField: 11
-  <RangeY>k__BackingField: 7
+  <RangeX>k__BackingField: 100
+  <RangeY>k__BackingField: 76.9

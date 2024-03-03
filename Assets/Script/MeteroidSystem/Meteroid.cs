@@ -1,27 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using EHack2024.Pool;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Meteroid : MonoBehaviour
+public class Meteroid : PoolObject
 {
-   public IPool<Meteroid> pool;
-    [SerializeField, Range(5,100)] private float deactiveTime = 5;
-    [SerializeField] private string tagName;
     [SerializeField] public Rigidbody rigidbodys;
-    void OnEnable(){
+
+    protected override void OnEnable()
+    {
+        if(rigidbodys!=null)
          rigidbodys.isKinematic = false;
-        Invoke(nameof(Deactive), deactiveTime);
+        base.OnEnable();
     }
 
-    void OnCollisionEnter(Collision collision){
-        //if(collision.transform.CompareTag(tagName))
-            Deactive();
-    }
-    private void Deactive(){
+    protected override void Deactive()
+    {
+          if(rigidbodys!=null)
         rigidbodys.isKinematic = true;
-        pool.Return(this);
-        
+        base.Deactive();
     }
 }

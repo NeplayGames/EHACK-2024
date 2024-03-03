@@ -8,11 +8,11 @@ using UnityEngine;
 namespace EHack2024.CharacterSystem.States{
     public class CharacterShootState : CharacterBaseState
     {
-        private IPool<Meteroid> pool;
+        private IPool<PoolObject> pool;
         private float time = .7f;
         private float tempTime = 0;
         private CharacterStateMachine characterStateMachine;
-        public CharacterShootState(CharacterComponents characterComponents, Meteroid projectile, PoolFabric poolFabric, CharacterStateMachine characterStateMachine) : base(characterComponents)
+        public CharacterShootState(CharacterComponents characterComponents, PoolObject projectile, PoolFabric poolFabric, CharacterStateMachine characterStateMachine) : base(characterComponents)
         {
             this.pool = poolFabric.CreatePool(projectile);
             this.characterStateMachine = characterStateMachine;
@@ -21,22 +21,20 @@ namespace EHack2024.CharacterSystem.States{
         public override void Enter()
         {
             tempTime = 0;
+             var localRot = CharacterComponents.FollowTargetTransform.eulerAngles; 
+            CharacterComponents.transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+            CharacterComponents.FollowTargetTransform.localEulerAngles =
+            new Vector3(localRot.x, 0 ,0);
              PlayAnimation(CharacterComponents.CharacterAnimationConfig.ShootHash);
         }
 
-        private void AnimationAction()
-        {
-            ShootGun();
-        }
         private void ShootGun(){  
-            Meteroid meteroid = pool.Request();
+            Bullet meteroid = (Bullet)pool.Request();
             meteroid.transform.position =  CharacterComponents.GunPoint.position;
             meteroid.transform.rotation = Quaternion.identity;
-             meteroid.pool = pool;
-            Rigidbody rigidbody = meteroid.GetComponent<Rigidbody>();    
-            rigidbody.isKinematic = false;
-            Vector3 direction =  CharacterComponents.GunPoint.forward; 
-            rigidbody.AddForce (direction * 9000); 
+            Vector3 direction =  Camera.main.transform.forward.normalized; 
+            meteroid.Direction = new Vector3(direction.x, 0, direction.z);
+             meteroid.pool = pool;       
     }
         public override void Exit()
         {

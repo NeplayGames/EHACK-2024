@@ -9,8 +9,8 @@ namespace EHack2024.DataSystem{
     public class DataBase : ScriptableObject
     {
         [field:SerializeField] public GameObject Player { get; private set;}
-        [field:SerializeField] public Meteroid projectile { get; private set;}
-        [field:SerializeField] public Meteroid meteroid { get; private set;}
+        [field:SerializeField] public PoolObject projectile { get; private set;}
+        [field:SerializeField] public PoolObject meteroid { get; private set;}
         [field:SerializeField] public PlayerConfig playerConfig { get; private set;}
         [field:SerializeField] public CameraConfig cameraConfig{ get; private set;}
         [field:SerializeField] public OrbsConfig orbsConfig{ get; private set;}

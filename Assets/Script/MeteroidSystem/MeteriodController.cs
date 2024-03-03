@@ -14,9 +14,9 @@ namespace EHack2024.MeteriodSystem{
         private float meteroidTime = 1f;
         private float meteroidtempTime = 0;
         private Transform player;
-        private const float height = 100;
-        private IPool<Meteroid> pool;
-        public MeteriodController(OrbsConfig orbsConfig, Meteroid meteroid, Transform player, PoolFabric poolFabric)
+        private const float height = 50;
+        private IPool<PoolObject> pool;
+        public MeteriodController(OrbsConfig orbsConfig, PoolObject meteroid, Transform player, PoolFabric poolFabric)
         {
             this.orbsConfig = orbsConfig;
             this.player = player;
@@ -31,7 +31,7 @@ namespace EHack2024.MeteriodSystem{
             if(meteroidtempTime > meteroidTime)
             {
                 meteroidtempTime = 0;
-                position = new Vector3(player.position.x, height, player.position.z);
+                position = new Vector3(player.position.x, height/3, player.position.z);
                 InstantiateMeteroid(position);
             }
             if (tempTime > time){
