@@ -599,9 +599,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'About Game
+  m_text: 'Meteor storm hustle
 
-    
 
     As the protagonist maneuvers through the game,
     the objective is to hurl cannonballs at a dynamically moving monster. Each successful
@@ -609,12 +608,11 @@ MonoBehaviour:
     periodically vanishing and reappearing, requiring precise timing and skillful
     shooting.
 
-    
 
-    Adding to the complexity, players must simultaneously
-    dodge falling Metroids right from the game''s inception. The seamless integration
-    of keyboard controls for basic movement and a 360-degree mouse rotation in this
-    3D environment enhances the gaming experience.'
+    Adding to the complexity, players must simultaneously dodge falling
+    Metroids right from the game''s inception. The seamless integration of keyboard
+    controls for basic movement and a 360-degree mouse rotation in this 3D environment
+    enhances the gaming experience.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 20733fd9f64900d47bfdca08bcbd3a29, type: 2}
   m_sharedMaterial: {fileID: 5700241697937268129, guid: 20733fd9f64900d47bfdca08bcbd3a29,

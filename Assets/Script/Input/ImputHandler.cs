@@ -68,20 +68,8 @@ namespace EHack2024.InputSystem{
              HandlingMovement();
             HandleMouseMovement();
             HandleShootAction();
-            HandleRestartQuit();
         }
 
-        private void HandleRestartQuit()
-        {
-            if(Input.GetKeyDown(KeyCode.R)){
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-            if(Input.GetKeyDown(KeyCode.M)){
-                SceneManager.LoadScene(0);
-            }
-            if(Input.GetKeyDown(KeyCode.Q)){
-                Application.Quit();
-            }
-        }
+      
     }
 }

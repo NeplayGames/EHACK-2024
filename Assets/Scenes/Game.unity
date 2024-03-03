@@ -2326,7 +2326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Health 20/20
+  m_text: Health 10/10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 20733fd9f64900d47bfdca08bcbd3a29, type: 2}
   m_sharedMaterial: {fileID: 5700241697937268129, guid: 20733fd9f64900d47bfdca08bcbd3a29,
@@ -3893,7 +3893,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'R - restart
 
-    Q - quit'
+    Q - quit
+
+    M - Menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 20733fd9f64900d47bfdca08bcbd3a29, type: 2}
   m_sharedMaterial: {fileID: 5700241697937268129, guid: 20733fd9f64900d47bfdca08bcbd3a29,
