@@ -15,7 +15,7 @@ public class PlayerHealth{
         }
     }
 
-    private int maxHealth = 2;
+    private int maxHealth = 20;
 
     public PlayerHealth()
     {

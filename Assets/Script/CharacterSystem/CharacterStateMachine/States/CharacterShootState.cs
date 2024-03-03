@@ -47,6 +47,7 @@ namespace EHack2024.CharacterSystem.States{
         {
             tempTime += UnityEngine.Time.deltaTime;
             if(tempTime > time){
+                tempTime = 0;       
             ShootGun();
             characterStateMachine.CanChangeState = true;
             if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical")!=0)

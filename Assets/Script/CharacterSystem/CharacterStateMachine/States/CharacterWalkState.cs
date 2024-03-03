@@ -17,7 +17,7 @@ namespace EHack2024.CharacterSystem.States{
 
         public override void Enter()
         {
-            PlayAnimation(CharacterComponents.CharacterAnimationConfig.WalkHash);
+            PlayAnimation(CharacterComponents.CharacterAnimationConfig.HitHash);
             base.Enter();
         }
 

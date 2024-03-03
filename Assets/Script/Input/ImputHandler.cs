@@ -45,7 +45,6 @@ namespace EHack2024.InputSystem{
         private void HandleMouseMovement()
         {
             Vector2 currentPos = new Vector2(Input.GetAxis("Mouse X") ,Input.GetAxis("Mouse Y"));
-            Debug.Log(currentPos);
            // if(currentPos != mousePo){
                 mousePosition?.Invoke(currentPos);
                 mousePo = currentPos;
