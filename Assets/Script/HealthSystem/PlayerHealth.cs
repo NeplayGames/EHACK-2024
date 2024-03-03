@@ -6,11 +6,13 @@ public class PlayerHealth{
 
     private int health;
     public event Action Died;
+    public event Action<int , int> HealthChange;
     public int Health{
         get {
             return health;
         }
         set {
+            HealthChange?.Invoke(value, maxHealth);
             health = value;
         }
     }

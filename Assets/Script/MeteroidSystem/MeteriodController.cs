@@ -9,7 +9,7 @@ namespace EHack2024.MeteriodSystem{
     public class MeteriodController : IEntity
     {
         private OrbsConfig orbsConfig;
-        private float time = .3f;
+        private float time = .1f;
         private float tempTime = 0;
         private Transform player;
         private const float height = 100;
@@ -27,7 +27,7 @@ namespace EHack2024.MeteriodSystem{
             if(tempTime > time){
                 tempTime = 0;
                 Vector3 position;
-                if(Random.Range(0,1f)< .5f)
+                if(Random.Range(0,1f) < .8f)
                     position = new Vector3(Random.Range(-orbsConfig.RangeX, orbsConfig.RangeX), height ,Random.Range(-orbsConfig.RangeY, orbsConfig.RangeY));
                 else
                     position = new Vector3( player.position.x, height, player.position.z);

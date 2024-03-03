@@ -58,7 +58,7 @@ namespace EHack2024.InputSystem{
             IsMoving = horizontal != 0 || vertical != 0;
             if (isMoving)
             {
-                changeDirection?.Invoke(horizontal, vertical);
+                changeDirection?.Invoke(horizontal, Mathf.Abs(vertical));
             }
         }
 
