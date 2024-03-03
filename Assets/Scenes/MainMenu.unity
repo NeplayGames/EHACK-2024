@@ -238,6 +238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicHolder: {fileID: 1187556294}
+  startGame: {fileID: 1631104963}
+  quitGame: {fileID: 1350702489}
 --- !u!1 &616748943
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +864,7 @@ GameObject:
   - component: {fileID: 1350702490}
   - component: {fileID: 1350702489}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1119,7 +1121,7 @@ GameObject:
   - component: {fileID: 1631104964}
   - component: {fileID: 1631104963}
   m_Layer: 5
-  m_Name: Button
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
